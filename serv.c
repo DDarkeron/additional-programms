@@ -56,7 +56,9 @@ int main(int argc, char *argv[])
         }
         printf("Got connection...\n");
 	send(client_socket, http_header, sizeof(http_header), 0);
-        close(client_socket);	
+        close(client_socket);
+        printf("closing...\n");
+	exit(0);
 	}
 	
 return 0;	
