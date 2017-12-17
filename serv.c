@@ -19,9 +19,27 @@ int main(int argc, char *argv[])
 	char response_data[128];
 	fgets(response_data, 128, file);
 	
-	char http_header[256] = "HTTP/1.1 200 OK\r\n\n";
+	char http_header[256] = "HTTP/1.1 200 OK\r\n"
+"Content-Type: text/html; charset=UTF-8\r\n\r\n"
+"<!DOCTYPE html><html><head><title>Web-server</title>"
+"<body><H1>Cogratulations!</H1><p>The file has been got and the code works right!</p></body>\r\n";
 	
+        char http_header1[256] = "HTTP/1.1 404 NOT FOUND\r\n"
+"Content-Type: text/html; charset=UTF-8\r\n\r\n"
+"<!DOCTYPE html><html><head><title>Web-server</title>"
+"<body><H1>Error 403</H1><p>The file hasn't been been found!</p></body>\r\n";
+
+        char http_header2[256] = "HTTP/1.1 403 Read Error\r\n"
+"Content-Type: text/html; charset=UTF-8\r\n\r\n"
+"<!DOCTYPE html><html><head><title>Web-server</title>"
+"<body><H1>Cogratulations!</H1><p>The file has been found but can't be read!</p></body>\r\n";
 	strcat(http_header, response_data);
+	
+        strcat(http_header, response_data);
+        strcat(http_header1, response_data);
+        strcat(http_header2, response_data);
+
+
 	
 	int server_socket;
 	
@@ -55,7 +73,7 @@ int main(int argc, char *argv[])
 
         }
         printf("Got connection...\n");
-	send(client_socket, http_header, sizeof(http_header), 0);
+	write(client_socket, http_header, sizeof(http_header) -1);
         close(client_socket);
         printf("closing...\n");
 	exit(0);
