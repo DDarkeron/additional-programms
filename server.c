@@ -10,10 +10,11 @@
 #include <arpa/inet.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <sys/sendfile.h>
 
-char *page200 = "HTTTP/1.1 200 OK\nContent-Type^ text/html; charset=UTF-8\r\n";
-char *page404 = "HTTTP/1.1 404 Not found\nContent-Type^ text/html; charset=UTF-8\r\n";
-char *page403 = "HTTTP/1.1 403 Read Error\nContent-Type^ text/html; charset=UTF-8\r\n";
+char *page200 = "HTTTP/1.1 200 OK\nContent-Type: text/html; charset=UTF-8\r\n";
+char *page404 = "HTTTP/1.1 404 Not found\nContent-Type: text/html; charset=UTF-8\r\n";
+char *page403 = "HTTTP/1.1 403 Read Error\nContent-Type: text/html; charset=UTF-8\r\n";
 
 /*
 char webpage[]=
